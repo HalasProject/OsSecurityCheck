@@ -2,19 +2,19 @@
 
 ## User & Password
 
-l'authentification sur linux s’appuie sur le module pam il est responsable de chiffré le mot de passe et le stocké 
+l'authentification sur linux s’appuie sur le module **`pam`** il est responsable de chiffré le mot de passe et le stocké 
 
 ```text
 ldd /bin/passwd  | grep pam
 ```
 
-les mot de passe s'ont chifré est stocké sur le fichiers shadow
+les mot de passe s'ont chiffré est stocké dans le fichiers **`shadow`**
 
 ```text
 more /etc/shadow
 ```
 
-donc on doit vérifier que le module pam stock les mot de passe sur le fichier shadow est non pas sur passwd 🔴 
+donc on doit vérifier que le module **`pam`** stock les mot de passe sur le fichier **`shadow`** est non pas sur **`passwd`** 🔴 
 
 ```text
 grep shadow /etc/pam.d/*
