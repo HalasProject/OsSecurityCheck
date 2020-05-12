@@ -40,7 +40,7 @@ cat /etc/passwd |grep -v nologin
 
 ## Changement de Password 🔴 
 
-On doit ajouter une règle afin d'informer nos utulisateur de changer leur mot de passe tout les 'x' jours
+On doit ajouter une règle afin d'informer nos utilisateurs de changer leur mot de passe tout les 'x' jours
 
 ```text
 change -m 7 -M 90 -w 10
