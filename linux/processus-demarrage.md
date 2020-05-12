@@ -59,7 +59,7 @@ echo "kernel.modules_disabled=1" >> /etc/sysctl.conf
 
 ### Block access 🔴 
 
-Block 'root' access to the virtual console \(empty the content of the curetty file\)
+Block 'root' access to the virtual console \(empty the content of the securetty file\)
 
 ```text
 echo > /etc/securetty
