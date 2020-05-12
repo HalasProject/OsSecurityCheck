@@ -1,4 +1,4 @@
-# Processus Démarrage
+# Start-up process
 
 ## GRUB 
 

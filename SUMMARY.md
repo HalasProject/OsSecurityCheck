@@ -4,11 +4,11 @@
 
 ## Linux
 
-* [Processus Démarrage](linux/processus-demarrage.md)
-* [Matériels](linux/materiels.md)
+* [Start-up process](linux/processus-demarrage.md)
+* [Materials](linux/materiels.md)
 * [System](linux/system.md)
 * [Users](linux/users.md)
 * [Logs](linux/logs.md)
 * [Services](linux/services.md)
-* [Réseau](linux/reseau.md)
+* [Network](linux/reseau.md)
 
