@@ -10,7 +10,7 @@ move /etc/default/grub /boot/grub/grud.d
 
 ## Iommu ⚫ 
 
-On ajoute iommu au démarrage, pour protéger la mémoire dans accès non contrôler. 
+On ajoute iommu au démarrage, pour protéger la mémoire aux accès non contrôler. 
 
 ```text
 vi /etc/default/grub
@@ -67,7 +67,7 @@ echo > /etc/securetty
 
 ### Intervalle de connexion ⚫ 
 
-Augmenter le temps minimal \( 5 s~ 10s\) pour chaque tentative de connexion \( Eviter bruteforce attack\) 
+Augmenter le temps minimal \( 5 s ~ 10s\) pour chaque tentative de connexion \( Eviter bruteforce attack\) 
 
 ```text
 nano /etc/pam.d/system-auth 
@@ -99,9 +99,9 @@ Afin de désactiver les touche sur les session déjà ouvert
 sysctl -w kernel.sysrq=0
 ```
 
-## \*Service de démarrage \(inutile\)
+## Service de démarrage \(inutile\)
 
-**Systemd** \(**SysV** sur ancienne machine\) est un **daemon** \( Processus qui s'execute en arriere plan \) qui gère de plusieurs processus et service du System d'exploitation pour les visualiser:
+**Systemd** \(**SysV** sur ancienne machine\) est un **daemon** \( Processus qui s'execute en arriere plan \) qui gère plusieurs processus et service du System d'exploitation pour les visualiser:
 
 ```text
 systemctl list-units --type target
@@ -109,7 +109,7 @@ systemctl list-units --type target
 
 ![](../.gitbook/assets/systemctl-list-units-type-target.png)
 
-### Cible par défaut
+### Default Target
 
 ```text
 systemctl get-default
@@ -127,7 +127,7 @@ sudo service --status-all
 ls /etc/init.d
 ```
 
-pour stoper un service 🔴 
+pour stopper un service 🔴 
 
 ```text
 systemctl stop <service>
@@ -142,7 +142,7 @@ systemctl disable <service>
 
 ### Dépendances de la cible par défaut
 
-Pour visualiser tout les target :
+Pour visualiser tout les targets :
 
 ```text
 ls -lrtha /etc/systemd/system
@@ -154,7 +154,7 @@ Pour vérifier les dépendances de notre target-level \(les level qui se lance �
 more /lib/systemd/system/<notre-target>
 ```
 
-Verifier tout les target pour voir leur service lancer:
+Vérifier tout les target pour voir leur service lancer:
 
 ```text
 systemctl list-unit-files --type service
