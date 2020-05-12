@@ -29,20 +29,20 @@ systemctl disable postfix ( pourdebon )
 
 ## TCP Wrappers 🔴 
 
-le processus tcp wrapper \(libraire libwrap\) contiens deux fichiers **`/etc/hosts.allow`** et **`/etc/hosts.denny`**, le premiers permet l'autorisation de connexion et le dernier en refuse si une regle est cité dans les deux fichiers la propriété est attribué a **`hosts.allow`**
+le processus TCP Wrappers \(libraire libwrap\) contiens deux fichiers **`/etc/hosts.allow`** et **`/etc/hosts.denny`**, le premiers permet l'autorisation de connexion et le dernier en refuse si une regle est cité dans les deux fichiers la propriété est attribué a **`hosts.allow`**
 
-Pour verifier si un service peut etre compatible avec la libraire libwrap
+Pour vérifier si un service peut être compatible avec la libraire libwrap
 
 ```text
 which sshd
 ldd /usr/sbin/sshd | grep libwrap
 ```
 
-enfin on peut par example ajouter dans le fichiers **`hosts.allow`**
+enfin on peut par exempla ajouter dans le fichiers **`hosts.allow`**
 
 **`sshd: 192.176.2.3/255.255.255.0`**
 
-on peut refuserer toute connexion par exemple en ajoutant dans le fichiers **`hosts.deny`**
+on peut refuser toute connexion par exemple en ajoutant dans le fichiers **`hosts.deny`**
 
 **`sshd:all`**
 
@@ -50,7 +50,7 @@ on peut refuserer toute connexion par exemple en ajoutant dans le fichiers **`ho
 
 ## Firewall \(IPTABLE\) 🔴 
 
-Pour verfier que le noyau est bien compiler pour utuliser le firewall 
+Pour vérifier que le noyau est bien compiler pour utiliser le firewall 
 
 ```text
 version=$(uname -r); grep IPTABLES /boot/config-${version}
@@ -67,9 +67,9 @@ Afin de voir les règle courantes:
 sudo iptables -L -n
 ```
 
-vaudrait mieux configurer netfilter pour ne pas laisser la machine open pour tout le monde si on souhaite bien sécurise notre serveur 
+vaudrait mieux configurer **netfilter** pour ne pas laisser la machine open pour tout le monde si on souhaite bien sécurise notre serveur 
 
-Si on veut ajouter une nouvelle politique on doit l'ajouter sur le fichiers de config, puisque en ligne de commande vas etre valide jusqu'au prochain redémarrage \(a chaud\)
+Si on veut ajouter une nouvelle politique on doit l'ajouter sur le fichiers de config, puisque en ligne de commande vas être valide jusqu'au prochain redémarrage \(a chaud\)
 
 ```text
 service iptables save
