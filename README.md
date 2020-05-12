@@ -4,9 +4,9 @@
 
 These are personal notes by Salah Bentayeb, available on Github, on auditing techniques and Security of an operating system. During this gitbook, I share with you some security audit technique for Linux servers. In other words, the operations to perform when you check the server for the first time, browse the server and try to discover its configuration. current. First look at the boot process, then the system, then the service, etc. 
 
-MANDATORY actions will be notified by emoji🔴 
+**MANDATORY** actions will be notified by emoji🔴 
 
-OPTIONAL actions will be notified by emoji ⚫ 
+**OPTIONAL** actions will be notified by emoji ⚫ 
 
 ## Contribution 🏗 
 
