@@ -18,7 +18,7 @@ ss -lptun
 | u | Afficher les sockets du protocole UDP |
 | n | Afficher les ports ouvert en mode numérique |
 
-afin de fermer un port on doit stopper son service exemple
+Afin de fermer un port on doit stopper son service exemple
 
 ```text
 systemctl stop postfix
@@ -26,10 +26,6 @@ systemctl disable postfix ( pourdebon )
 ```
 
 ![](../.gitbook/assets/ip.png)
-
-{% hint style="info" %}
-Il est préférable de changer les ports par Default des service exemple **`ssh`** qui ecoute sur le port **`22`**
-{% endhint %}
 
 ## TCP Wrappers 🔴 
 
