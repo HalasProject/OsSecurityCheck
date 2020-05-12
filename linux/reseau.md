@@ -136,6 +136,12 @@ Tracé les tentative de connexion échoué, par exemple âpre 2 tentative les le
 MaxAuthTries 2
 ```
 
+Afin d'afficher les dernier connexion échoué 
+
+```text
+sudo lastb
+```
+
 ### Clé
 
 Activer l'authentification juste par clé \(public/privé\)
