@@ -10,7 +10,15 @@ ss -lptun
 
 ![](../.gitbook/assets/port.png)
 
-afin de fermer un port on doit stoper son service example
+| Flag | Description |
+| :--- | :--- |
+| l | Afficher touts les sockets en écoute |
+| p | Afficher le processus utilisant la socket |
+| t | Afficher les sockets du protocole TCP |
+| u | Afficher les sockets du protocole UDP |
+| n | Afficher les ports ouvert en mode numérique |
+
+afin de fermer un port on doit stopper son service exemple
 
 ```text
 systemctl stop postfix
