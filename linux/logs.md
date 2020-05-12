@@ -6,11 +6,11 @@
 
 ## Permission ⚫ 
 
-les fichiers log se situe en général dans le dossier **`/var/log`** on doit vérifier les paramètre de permission de ce dernier et essayer de le séparer dans une partition seul 
+the log files are generally located in the **`/var/log`** folder, we must check the permission settings of the latter and try to separate it in a single partition
 
 ## Rotation ⚫ 
 
-On doit activer le System de rotation qui vas empêcher la saturation des fichiers logs
+We must activate the rotation system which will prevent saturation of log files
 
 ```text
 more /etc/logrotate.conf
@@ -18,15 +18,15 @@ more /etc/logrotate.conf
 
 ## Distance ⚫ 
 
-externalisé les fichiers de traces afin d’écrire les log dans un fichiers distant grâce a TCP/UDP
+externalize the trace files in order to write the logs in a remote file using TCP / UDP
 
 ```text
 more /etc/rsyslog.conf
 ```
 
-## Superviser les fichiers logs 🔴 
+## Monitor log files 🔴 
 
-On devrai contrôler tout les alerts provenant de nos fichiers logs et rester a jour afin d’éviter tout type d'attaque, donc pour cela on est dans l'obligation de configurer ou d'installer un superviseur de fichiers log afin de recevoir des mail par exemple **logwatch,nagiox**
+We will have to check all the alerts coming from our log files and stay up to date in order to avoid any type of attack, so for that we have to configure or install a log file supervisor in order to receive emails for example **logwatch, nagiox**
 
 {% embed url="https://doc.ubuntu-fr.org/logwatch" %}
 

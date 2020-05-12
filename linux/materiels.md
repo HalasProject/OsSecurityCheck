@@ -10,12 +10,12 @@ dmseg | grep cpu
 more /proc/cpuinfo
 ```
 
-Vérifier que le CPU dispose des flags **PAE** et **NX** 
+Check that the CPU has the PAE and NX flags
 
 ![](../.gitbook/assets/cpu_flags.png)
 
 {% hint style="info" %}
-Pae & nx Protège l’exécution d'instruction stockée dans la région mémoire non-autorisé
+Pae and nx Protects instruction execution stored in the unauthorized memory region
 {% endhint %}
 
 {% embed url="https://superuser.com/questions/1118712/when-i-have-to-use-pae-nx" %}
@@ -36,7 +36,7 @@ vmstate -s | grep memory
 
 ## Swap
 
-Une fois la memoire est saturé le System vas basculer automatiquement vers la mémoire swap donc on doit vérifier sa présence et avoir un minimum de mémoire SWAP sur notre system
+Once the memory is full the System will automatically switch to swap memory so we must check its presence and have a minimum of SWAP memory on our system
 
 ```text
 vmstat -s | grep swap
@@ -52,13 +52,13 @@ dmesg | grep disk
 lsblk
 ```
 
-On doit vérifier l'aspect partitionnement du disque et identifier les défaut de partitionnement ainsi les mauvaise option de montage **\(Cette partie est avant l’installation du OS\)**
+We must check the partitioning aspect of the disk and identify the partitioning faults and the wrong mounting option \(**This part is before installing the OS**\)
 
 ```text
 sudo fdisk -l
 ```
 
-Pour avoir plus de détaille sur un partitionnement
+To have more details on a partitioning
 
 ```text
 blkid /dev/sda2 
@@ -66,11 +66,11 @@ blkid /dev/sda2
 
 ![](../.gitbook/assets/disk_linux.png)
 
-il existe un autre type nomé **LVM2 plus solide que celui la** 
+There is another type named LVM2 stronger than ext4
 
-Donc une autre remarque faudrait bien vérifier le partitionnement et l'isolation qui protège les composant du System example le dossier **/tmp**/ faudrait l'isoler 😉 
+So another remark would have to verify the partitioning and the insulation which protects the components of the System example the  **`/tmp/`** folder would have to isolate it😉 
 
-Vérifier les la liste des partition qui sont monté automatiquement au démarrage 
+Check the list of partitions that are mounted automatically at startup
 
 ```text
 cat /etc/fstab

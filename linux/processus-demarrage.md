@@ -2,7 +2,7 @@
 
 ## GRUB 
 
-System d'execution avant l'os
+Execution system before the os
 
 ```text
 move /etc/default/grub /boot/grub/grud.d
@@ -10,7 +10,7 @@ move /etc/default/grub /boot/grub/grud.d
 
 ## Iommu ⚫ 
 
-On ajoute iommu au démarrage, pour protéger la mémoire aux accès non contrôler. 
+We add iommu at startup, to protect non-controlling access memory.
 
 ```text
 vi /etc/default/grub
@@ -20,7 +20,7 @@ vi /etc/default/grub
 
 ## Grub Password Protection 🔴 
 
-Crée un nouveau utilisateur avec un mot de passe chiffré afin de protéger l’accès au Shell de Grub:
+Create a new user with an encrypted password to protect access to the Grub Shell
 
 ```bash
 cat /etc/grub.d/01_users
@@ -35,7 +35,7 @@ EOF
 
 ## Droit 🔴 
 
-passer les droit 700 **\(Lecture & Ecriture que par 'root'\)** sur l'arborescence grud.d
+pass the right 700 \(Read & Write only by 'root'\) on grud.d tree
 
 ```text
 chmod -R 700 /etc/grud.d/
@@ -43,13 +43,13 @@ chmod -R 700 /etc/grud.d/
 
 ## Module ⚫ 
 
-Bloquer les chargement de modules supplémentaires
+Block loading of additional modules
 
 ```text
 echo "kernel.modules_disabled=1" >> /etc/sysctl.conf
 ```
 
-## Console virtuelle
+## Virtual console
 
 `alt` + `ctrl` + \( `F1`,`F2`,`F3`,`F4`, ... `F7`\)
 
@@ -57,33 +57,33 @@ echo "kernel.modules_disabled=1" >> /etc/sysctl.conf
 
 `alt` + `ctrl` + `f2` = Shell
 
-### Bloquer l'accès 🔴 
+### Block access 🔴 
 
-Bloquer l'acces 'root' a la console virtuelle \( vider le contenue du fichier**`securetty`**\)
+Block 'root' access to the virtual console \(empty the content of the curetty file\)
 
 ```text
 echo > /etc/securetty
 ```
 
-### Intervalle de connexion ⚫ 
+### Connection interval ⚫ 
 
-Augmenter le temps minimal \( 5 s ~ 10s\) pour chaque tentative de connexion \( Eviter bruteforce attack\) 
+Increase the minimum time \(5 s ~ 10s\) for each connection attempt \(Avoid bruteforce attack\)
 
 ```text
 nano /etc/pam.d/system-auth 
 ```
 
-## Désactiver `Ctrl+Alt+Supr` 🔴 
+## Disable `Ctrl+Alt+Supr` 🔴 
 
-Désactiver la combinaison afin que l’utilisateur ne redémarre pas la machine 
+Disable the combination **`Ctrl`**+**`Alt`**+**`Supr`** so that the user does not restart the machine
 
 ```text
 cd /etc/systemd/system; ln -sf /dev/null /etc/system.d/system/ctrl-alt-del.target
 ```
 
-## Touche Magic ⚫ 
+## Magic Key⚫ 
 
-Désactiver les Magic System Requst Keys
+Disable Magic System Requst Keys
 
 ```text
 sysctl kernel.sysrq
@@ -93,7 +93,7 @@ sysctl kernel.sysrq
 echo "kernel.sysrq=0" >> /etc/sysctl.conf
 ```
 
-Afin de désactiver les touche sur les session déjà ouvert 
+In order to deactivate the keys on the session already opened
 
 ```text
 sysctl -w kernel.sysrq=0
@@ -101,7 +101,7 @@ sysctl -w kernel.sysrq=0
 
 ## Service de démarrage \(inutile\)
 
-**Systemd** \(**SysV** sur ancienne machine\) est un **daemon** \( Processus qui s'execute en arriere plan \) qui gère plusieurs processus et service du System d'exploitation pour les visualiser:
+Systemd \(SysV on old machine\) is a daemon \(Process that runs in the background\) which manages several processes and operating system service to view them:
 
 ```text
 systemctl list-units --type target
@@ -120,41 +120,41 @@ who -r
 
 ![](../.gitbook/assets/runlevel_systemd_systemv.png)
 
-Visualiser tout les service 
+View all services
 
 ```text
 sudo service --status-all
 ls /etc/init.d
 ```
 
-pour stopper un service 🔴 
+To stop a service 🔴 
 
 ```text
 systemctl stop <service>
 service <name> stop
 ```
 
-Ne plus démarrer le service sur notre **`default-target`**
+Stop starting the service on our **`default-target`**
 
 ```text
 systemctl disable <service>
 ```
 
-### Dépendances de la cible par défaut
+### Default target dependencies
 
-Pour visualiser tout les targets :
+To view all targets:
 
 ```text
 ls -lrtha /etc/systemd/system
 ```
 
-Pour vérifier les dépendances de notre target-level \(les level qui se lance âpre le notre\)
+To check the dependencies of our target-level \(the level which starts with ours\)
 
 ```text
 more /lib/systemd/system/<notre-target>
 ```
 
-Vérifier tout les target pour voir leur service lancer:
+Check all the targets to see their launched service :
 
 ```text
 systemctl list-unit-files --type service

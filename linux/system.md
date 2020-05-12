@@ -1,10 +1,10 @@
 # System
 
-## Limiter l'acces a `/boot/`🔴 
+## Limit access to `/boot/`🔴 
 
-le dossier **`/boot/`** contiens notre noyau donc faudrait bien le protéger 
+the **`/boot/`**folder contains our kernel so we should protect it
 
-le fichier **`/boot/system.map`** contient les table des symboles utilisé par le noyau associé aux adresse mémoire Ce fichier est souvent la cible d'attaques visant à exploiter les failles dans le code du noyau.
+the file **`/boot/system.map`** contains the symbol tables used by the kernel associated with memory addresses ,This file is often the target of attacks aiming to exploit the flaws in the kernel code.
 
 ```text
 ls -lrth / | grep boot
@@ -16,22 +16,22 @@ dr-xr-xr-x. 5 root root 4,0K 27 mars 09:34 boot
 
 ![](../.gitbook/assets/system_map.png)
 
-## Mise a jour 🔴 
+## Update 🔴 
 
-Vérifier la signature et l’efficacité des package installer 
+Check the signature and effectiveness of the installer packages
 
 ```text
 more /etc/apt/sources.list
 ```
 
-Lister tout les packages installer dans le system
+List all packages installed in the system
 
 ```text
 dpkg -l
 yum list installed
 ```
 
-Mettre a jour le system
+Update system
 
 ```text
 sudo apt-get update

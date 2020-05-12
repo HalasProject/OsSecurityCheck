@@ -2,7 +2,7 @@
 
 ## Socket & Ports 🔴 
 
-Le réseau c'est le principal vecteur d'attaque sur un serveur, chaque service ouvert implique l'ouverture de port\(s\) donc on doit vérifier la liste des port ouvert dans notre system
+The network is the main vector of attack on a server, each open service implies the opening of port\(s\) so we must check the list of open ports in our system
 
 ```text
 ss -lptun
@@ -12,13 +12,13 @@ ss -lptun
 
 | Flag | Description |
 | :--- | :--- |
-| l | Afficher touts les sockets en écoute |
-| p | Afficher le processus utilisant la socket |
-| t | Afficher les sockets du protocole TCP |
-| u | Afficher les sockets du protocole UDP |
-| n | Afficher les ports ouvert en mode numérique |
+| l | Show all listening sockets |
+| p | Display the process using the socket |
+| t | Show TCP sockets |
+| u | View UDP protocol sockets |
+| n | Display open ports in digital mode |
 
-Afin de fermer un port on doit stopper son service exemple
+In order to close a port you have to stop its example service
 
 ```text
 systemctl stop postfix
@@ -29,20 +29,20 @@ systemctl disable postfix ( pourdebon )
 
 ## TCP Wrappers 🔴 
 
-le processus TCP Wrappers \(libraire libwrap\) contiens deux fichiers **`/etc/hosts.allow`** et **`/etc/hosts.denny`**, le premiers permet l'autorisation de connexion et le dernier en refuse si une regle est cité dans les deux fichiers la propriété est attribué a **`hosts.allow`**
+the TCP Wrappers process \(libwrap library\) contains two files **`/etc/hosts.allow`** and **`/etc/hosts.denny`**, The first allows connection authorization and the last refuses if a rule is cited in the two files the property is assigned to **`hosts.allow`**
 
-Pour vérifier si un service peut être compatible avec la libraire libwrap
+To check if a service can be compatible with the libwrap library
 
 ```text
 which sshd
 ldd /usr/sbin/sshd | grep libwrap
 ```
 
-enfin on peut par exempla ajouter dans le fichiers **`hosts.allow`**
+finally we can for example add in the files**`hosts.allow`**
 
 **`sshd: 192.176.2.3/255.255.255.0`**
 
-on peut refuser toute connexion par exemple en ajoutant dans le fichiers **`hosts.deny`**
+we can refuse any connection for example by adding to the files **`hosts.deny`**
 
 **`sshd:all`**
 
@@ -50,7 +50,7 @@ on peut refuser toute connexion par exemple en ajoutant dans le fichiers **`host
 
 ## Firewall \(IPTABLE\) 🔴 
 
-Pour vérifier que le noyau est bien compiler pour utiliser le firewall 
+To verify that the kernel is properly compiled to use the firewall
 
 ```text
 version=$(uname -r); grep IPTABLES /boot/config-${version}
@@ -59,17 +59,17 @@ CONFIG_IP_NF_IPTABLES=m
 CONFIG_IP6_NF_IPTABLES=m
 ```
 
-le \(m\) signifie module donc il faudrait mieux de recompiler le noyau afin de rendre netfilter intégré et non pas un module
+The \(**m**\) means module so it would be better to recompile the kernel in order to make netfilter integrated and not a module
 
-Afin de voir les règle courantes:
+In order to see the current rules:
 
 ```text
 sudo iptables -L -n
 ```
 
-vaudrait mieux configurer **netfilter** pour ne pas laisser la machine open pour tout le monde si on souhaite bien sécurise notre serveur 
+would be better to configure **netfilter** to not leave the machine open for everyone if we want to secure our server
 
-Si on veut ajouter une nouvelle politique on doit l'ajouter sur le fichiers de config, puisque en ligne de commande vas être valide jusqu'au prochain redémarrage \(a chaud\)
+If we want to add a new policy we must add it to the config file, since on the command line will be valid until the next restart \(warm\)
 
 ```text
 service iptables save
@@ -81,7 +81,7 @@ service iptables save
 
 ### Version
 
-Vérifier qu'on la récente version du Protocol
+Check that the recent version of the Protocol
 
 ```text
 ssh -v localhost
@@ -89,7 +89,7 @@ ssh -v localhost
 
 ### Root
 
-Désactiver l'access avec le compte root
+Disable access to root account
 
 ```text
 more /etc/ssh/sshd.config | grep PermitRootLogin
@@ -97,7 +97,7 @@ more /etc/ssh/sshd.config | grep PermitRootLogin
 
 ### Port 22
 
-Changer le port 22 afin qu'il ne sois pas connue par le public
+Change port 22 so that it is not known to the public
 
 ```text
 grep port /etc/ssh/sshd.config
@@ -105,7 +105,7 @@ grep port /etc/ssh/sshd.config
 
 ### Empty Password
 
-Empêcher la connexion sans mot de passe
+Prevent login without password
 
 ```text
 grep PermitEmptyPassword /etc/ssh/sshd.config
@@ -113,15 +113,15 @@ grep PermitEmptyPassword /etc/ssh/sshd.config
 
 ### Idle
 
-Empêcher la connexion sans activité \(idle\)
+Prevent idle connection
 
 ```text
 grep ClientAliveInterval /etc/ssh/sshd.config
 ```
 
-### Autorisation 
+### Authorization
 
-Autoriser la connexion juste a certain utilisateur ou groupe 
+Allow just login to certain user or group
 
 ```text
 AllowUsers user1,user2
@@ -130,21 +130,21 @@ AllowGroups groupe1,groupe2
 
 ### Trace Failed Auth
 
-Tracé les tentative de connexion échoué, par exemple âpre 2 tentative les les trace seront détaillé
+Trace failed connection attempts, for example rough 2 attempt trace will be detailed
 
 ```text
 MaxAuthTries 2
 ```
 
-Afin d'afficher les dernier connexion échoué 
+In order to display the last failed connection
 
 ```text
 sudo lastb
 ```
 
-### Clé
+### Key
 
-Activer l'authentification juste par clé \(public/privé\)
+Enable fair key authentication \(public / private\)
 
 ```text
 PasswordAuthentification No

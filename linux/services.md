@@ -1,36 +1,36 @@
 # Services
 
-## Configuration d'un service 🔴 
+## Service configuration 🔴 
 
-Lister les service activé sur le system
+List the activated service on the system
 
 ```text
 systemctl list-units-files --type service | grep enabled
 ```
 
-pour vérifier le statue d'un service
+to check the status of a service
 
 ```text
 systemctl status apache2.service
 ```
 
-Chaque service a sa propre stratégie d’exécuter et de fonctionner donc on doit les vérifier un par un et opter pour une bonne sécurité du service 
+Each service has its own strategy to run and operate so we have to check them one by one and opt for good security of the service
 
 ```text
 cat /etc/apache2/apache2.conf | grep [A-Z] | grep -v "#"
 ```
 
-## Cloisonnement
+## Partitioning
 
-Mettre en place des technique pour exécute des services dans un environnement d’accès aux ressource limité et contrôlé 
+Set up techniques to execute services in a limited and controlled resource access environment
 
-## Compte Service🔴 
+## Service Account🔴 
 
 ```text
 ps -edf | grep <service_name>
 ```
 
-Vérifier pour chaque service le compte associé avec et donner le moindre privilège, afin d'obtenir des detailles sur un compte specifié
+Check for each service the account associated with and give the slightest privilege, in order to obtain details on a specified account
 
 ```text
 id <compte>
@@ -39,12 +39,12 @@ grep <compte> /etc/group
 ```
 
 {% hint style="info" %}
-**Information**: les iud inférieur a 100 s'ont réserver aux compte System
+Information: uid less than 100 are reserved for System accounts
 {% endhint %}
 
-## Dossier Service 🔴 
+## Service File 🔴 
 
-Vérifier les droit des dossier appartenant a un service example apache:
+Check the rights of files belonging to an apache example service:
 
 ```text
 chown -R www-data:www-data /var/www/html
@@ -54,19 +54,19 @@ chown -R www-data:www-data /var/www/html
 chmod -R 750 /var/www/html
 ```
 
-## Virtualiser l'architecture Applicative d'un Service ⚫ 
+## Virtualize the Application Architecture of a Service ⚫ 
 
-il faudrait attribuer une machine et os pour chaque service mais cette méthode et impeu trop coûteuse 💸 mais heureusement il a des alternative:
+a machine and bone should be allocated for each service but this method are too expensive 💸 but luckily there are alternatives:
 
-* Les Conteneur \(Docker\)
-* La Virtualisation
-* Hyper viseur noyau \(Linux KVM\)
+* Containers \(Docker\)
+* Virtualization
+* Kernel hypervisor \(Linux KVM\)
 
 ![](../.gitbook/assets/apache_vm.png)
 
 ## Chroot 🔴 
 
-la technique de chroot permettant de changer le répertoire racine d'un processus de la machine hôte.
+The chroot technique used to change the root directory of a process on the host machine.
 
 ## 
 
