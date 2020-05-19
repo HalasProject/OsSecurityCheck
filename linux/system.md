@@ -31,10 +31,18 @@ dpkg -l
 yum list installed
 ```
 
+Clean the useless package system
+
+```text
+sudo apt-get autoremove --purge
+```
+
 Update system
 
 ```text
 sudo apt-get update
 sudo apt-get upgrade
 ```
+
+
 
