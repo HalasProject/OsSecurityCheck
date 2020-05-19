@@ -31,6 +31,12 @@ dpkg -l
 yum list installed
 ```
 
+Nettoyage systeme des package inutil
+
+```text
+sudo apt-get autoremove --purge
+```
+
 Mettre a jour le system
 
 ```text
