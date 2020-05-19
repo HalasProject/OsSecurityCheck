@@ -28,5 +28,7 @@ more /etc/rsyslog.conf
 
 We will have to check all the alerts coming from our log files and stay up to date in order to avoid any type of attack, so for that we have to configure or install a log file supervisor in order to receive emails for example **logwatch, nagiox**
 
+![](../.gitbook/assets/logwatch.png)
+
 {% embed url="https://doc.ubuntu-fr.org/logwatch" %}
 
